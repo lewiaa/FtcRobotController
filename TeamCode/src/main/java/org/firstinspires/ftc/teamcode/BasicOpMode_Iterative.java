@@ -13,8 +13,6 @@ abstract class BasicOpMode_Iterative extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftDrive = null;
-    private DcMotor rightDrive = null;
     hardware robot = new hardware();
 
     @Override
@@ -38,7 +36,7 @@ abstract class BasicOpMode_Iterative extends OpMode
     @Override
     public void loop() {
       drive();
-
+        shoot();
     
     }
 
@@ -49,6 +47,13 @@ abstract class BasicOpMode_Iterative extends OpMode
     public void stop() {
     }
 
+    public void shoot(){
+        telemetry.addData("speed" + shooter.getVelocity);
+        if(gamepad2.y)
+            shooter.setVelocity(28*5000)
+        if (!gamepad2.y)
+            shooter.setVelocity(0)
+        }
 
     public void drive(){
         double r = Math.hypot(gamepad1.left_stick_x, -gamepad1.left_stick_y);

@@ -7,6 +7,7 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
@@ -26,7 +27,7 @@ public class Hardware4Motor {
     public DcMotor bl = null;
     public DcMotor br = null;
     public DcMotor intake = null;
-    public DcMotor shooter = null;
+    public DcMotorEx shooter = null;
     
     public BNO055IMU imu = null;
     public Orientation angles = null;
@@ -36,7 +37,7 @@ public class Hardware4Motor {
         detectorInit();
 
  
-        shooter = hwMap.get(DcMotor.class, "shooter");
+        shooter = hwMap.get(DcMotorEx.class, "shooter");
         fl = hwMap.get(DcMotor.class, "fl");
         fr = hwMap.get(DcMotor.class, "fr");
         bl = hwMap.get(DcMotor.class, "bl");
