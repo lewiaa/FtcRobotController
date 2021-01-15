@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-public class Hardware4Motor {
+public class hardware {
     HardwareMap hwMap = null;
  
  
@@ -34,7 +34,6 @@ public class Hardware4Motor {
 
     public void init(HardwareMap ahwMap) {
         hwMap = ahwMap;
-        detectorInit();
 
  
         shooter = hwMap.get(DcMotorEx.class, "shooter");
@@ -43,8 +42,8 @@ public class Hardware4Motor {
         bl = hwMap.get(DcMotor.class, "bl");
         br = hwMap.get(DcMotor.class, "br");
         intake = hwMap.get(DcMotor.class, "intake");
-        flicker = hwMap.get(Servo.class, "flicker")
-        pusher = hwMap.get(Servo.class, "pusher")
+        flicker = hwMap.get(Servo.class, "flicker");
+        pusher = hwMap.get(Servo.class, "pusher");
 
         fl.setPower(0);
         fr.setPower(0);
@@ -70,9 +69,8 @@ public class Hardware4Motor {
         imu = hwMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
         bl.setDirection(DcMotor.Direction.REVERSE);
-        br.setDirection(DcMotor.Direction.REVERSE);
-
-
+        fl.setDirection(DcMotor.Direction.REVERSE);
+shooter.setDirection(DcMotorEx.Direction.REVERSE);
     }
 
 

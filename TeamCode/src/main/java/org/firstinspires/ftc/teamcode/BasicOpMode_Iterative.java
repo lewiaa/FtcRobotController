@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="teleop")
 
-abstract class BasicOpMode_Iterative extends OpMode
+public class BasicOpMode_Iterative extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -18,7 +18,7 @@ abstract class BasicOpMode_Iterative extends OpMode
     @Override
     public void init() {
         
-        robot.init(hardwareMap)
+        robot.init(hardwareMap);
     }
 
    
@@ -37,7 +37,9 @@ abstract class BasicOpMode_Iterative extends OpMode
     public void loop() {
       drive();
         shoot();
-    
+    intake();
+    flick();
+    push();
     }
 
     /*
@@ -48,11 +50,12 @@ abstract class BasicOpMode_Iterative extends OpMode
     }
 
     public void shoot(){
-        telemetry.addData("speed" + shooter.getVelocity);
-        if(gamepad2.y)
-            shooter.setVelocity(28*5000)
-        if (!gamepad2.y)
-            shooter.setVelocity(0)
+
+        telemetry.addData("speed", robot.shooter.getVelocity());
+        if(gamepad2.left_bumper)
+        robot.shooter.setVelocity(1650);
+        if (!gamepad2.left_bumper)
+            robot.shooter.setVelocity(0);
         }
 
     public void drive(){
@@ -68,8 +71,23 @@ abstract class BasicOpMode_Iterative extends OpMode
         robot.fl.setPower(v3);
         robot.br.setPower(v2);
         robot.fr.setPower(v4);
-    
-
-    
+    }
+    public void intake(){
+        if (gamepad2.right_bumper)
+        robot.intake.setPower(1);
+        if (!gamepad2.right_bumper)
+            robot.intake.setPower(0);
+    }
+    public void flick(){
+        if (gamepad2.x)
+            robot.flicker.setPosition(0);
+        if (!gamepad2.x)
+            robot.flicker.setPosition(.5);
+    }
+    public void push(){
+        if (gamepad1.right_bumper)
+            robot.pusher.setPosition(1);
+        if (!gamepad1.right_bumper)
+            robot.pusher.setPosition(.5);
     }
 }
