@@ -48,15 +48,26 @@ public class BasicOpMode_Iterative extends OpMode
     @Override
     public void stop() {
     }
-
+    Boolean wasShooting = false;
+    Boolean isShooting = false;
     public void shoot(){
-
         telemetry.addData("speed", robot.shooter.getVelocity());
-        if(gamepad2.left_bumper)
-        robot.shooter.setVelocity(1650);
-        if (!gamepad2.left_bumper)
-            robot.shooter.setVelocity(0);
+        if(!wasShooting){ 
+        if(gamepad2.left_bumper && !isShooting){
+            robot.shooter.setVelocity(1650);
+            isShooting = true;
+            wasShooting = true;   
         }
+        if (gamepad2.left_bumper && isShooting){
+            robot.shooter.setVelocity(0);
+            wasShooting = true;
+            isShooting = false
+        }
+    }
+    if(!gamepad2.left_bumper){
+        wasShooting = false;
+    }
+    }
 
     public void drive(){
         double r = Math.hypot(gamepad1.left_stick_x, -gamepad1.left_stick_y);
@@ -72,18 +83,36 @@ public class BasicOpMode_Iterative extends OpMode
         robot.br.setPower(v2);
         robot.fr.setPower(v4);
     }
+
+    wasIntaking = false;
+    isIntaking = falsel
     public void intake(){
-        if (gamepad2.right_bumper)
-        robot.intake.setPower(1);
-        if (!gamepad2.right_bumper)
-            robot.intake.setPower(0);
+        if(!wasIntaking){
+            if (gamepad2.right_bumper && !isShooting)
+                robot.intake.setPower(1);
+                isIntaking = true;
+                wasIntaking = true;
+        
+            if (gamepad2.right_bumper && isShooting)
+                robot.intake.setPower(0);
+                isIntaking = false;
+                wasIntaking = true;
+        }
+    if (!gamepad2.right_bumper){
+        wasIntaking = false;
     }
+}
     public void flick(){
         if (gamepad2.x)
             robot.flicker.setPosition(0);
         if (!gamepad2.x)
             robot.flicker.setPosition(.5);
-    }
+            if (gamepad2.b)
+            robot.flicker.setPosition(1);
+        if (!gamepad2.b)
+            robot.flicker.setPosition(.5);
+    
+        }
     public void push(){
         if (gamepad1.right_bumper)
             robot.pusher.setPosition(1);
