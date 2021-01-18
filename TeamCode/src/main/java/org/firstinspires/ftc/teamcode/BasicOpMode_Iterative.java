@@ -61,7 +61,7 @@ public class BasicOpMode_Iterative extends OpMode
         if (gamepad2.left_bumper && isShooting){
             robot.shooter.setVelocity(0);
             wasShooting = true;
-            isShooting = false
+            isShooting = false;
         }
     }
     if(!gamepad2.left_bumper){
@@ -84,8 +84,8 @@ public class BasicOpMode_Iterative extends OpMode
         robot.fr.setPower(v4);
     }
 
-    wasIntaking = false;
-    isIntaking = falsel
+    public boolean wasIntaking = false;
+    public boolean isIntaking = false;
     public void intake(){
         if(!wasIntaking){
             if (gamepad2.right_bumper && !isShooting)

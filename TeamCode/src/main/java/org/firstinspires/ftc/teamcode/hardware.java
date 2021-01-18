@@ -32,6 +32,8 @@ public class hardware {
     public BNO055IMU imu = null;
     public Orientation angles = null;
 
+    public FtcDashboard dashboard = FtcDashboard.getInstance();
+
     public void init(HardwareMap ahwMap) {
         hwMap = ahwMap;
 
